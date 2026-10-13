@@ -131,10 +131,10 @@ html,body{margin:0;background:#111}
 (function(){var g=document.getElementById('gate');try{if(localStorage.getItem('aft_age_ok')!=='1')g.hidden=false}catch(e){g.hidden=false}
 document.getElementById('gate-yes').onclick=function(){try{localStorage.setItem('aft_age_ok','1')}catch(e){}g.hidden=true};
 document.getElementById('gate-no').onclick=function(){document.getElementById('gate-msg').textContent='Sorry, you must be 21 or older to visit this site.'};
-var EP='https://cfaa62-3c.myshopify.com/contact';
+var FS=['freedom','americafirstwhiskey.com'].join('@');var EP='https://cfaa62-3c.myshopify.com/contact';
 document.querySelectorAll('.aft-form').forEach(function(f){f.addEventListener('submit',function(ev){ev.preventDefault();var i=f.querySelector('input[type=email]');if(!i.checkValidity()){i.reportValidity();return}
 var d=new URLSearchParams();d.append('form_type','customer');d.append('utf8','\u2713');d.append('contact[tags]','tequila-waitlist');d.append('contact[email]',i.value.trim());
 var b=f.querySelector('button');b.disabled=true;
-fetch(EP,{method:'POST',mode:'no-cors',body:d}).catch(function(){}).then(function(){f.hidden=true;f.nextElementSibling.hidden=false});})});})();
+var em=i.value.trim();fetch('https://formsubmit.co/ajax/'+FS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:em,_subject:'New America First Tequila waitlist signup',_template:'table',_captcha:'false'})}).catch(function(){});fetch(EP,{method:'POST',mode:'no-cors',body:d}).catch(function(){}).then(function(){f.hidden=true;f.nextElementSibling.hidden=false});})});})();
 </script>
 </body></html>
